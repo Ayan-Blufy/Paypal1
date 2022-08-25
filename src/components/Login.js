@@ -13,7 +13,7 @@ const Login = () => {
     const { login, setLogin, account, setAccount, symbol, chain, setChain, setSymbol, setExplorer, setpaypalContractAddress, balance, setBalance, currency, setCurrency } = useContext(AppState);
     async function connectWallet() {
         try {
-            if (window.ethereum) {
+           
                 await window.ethereum.request({ method: "wallet_requestPermissions", params: [{ eth_accounts: {} }] })
                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                 const chainId = await window.ethereum.request({ method: "eth_chainId" });
@@ -49,10 +49,7 @@ const Login = () => {
 
                 toast.success("Login Successfully")
                 setLogin(true);
-            }
-            else {
-                toast.warn("Please Install Metamask ")
-            }
+           
         } catch (err) {
             // setError(`"${err.message}"`)
             toast.error(err.message);
